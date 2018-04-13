@@ -169,24 +169,35 @@ use mrstroz\wavecms\news\models\News;
 use Yii;
 // ...
 //Parse request to set language before run ActiveRecord::find()
+Yii::$app->urlManager->parseRequest(Yii::$app->request);
+
 /** @var Settings $settings */
 $settings = Yii::$app->settings;
 $link = $settings->get('NewsSettings', 'overview_link');
 
-Yii::$app->urlManager->parseRequest(Yii::$app->request);
 $model = Yii::createObject(News::class);
 
 Yii::$app->getUrlManager()->addRules([
-$link  => 'news/index'
+    $link => 'news/index'
 ]);
 
-Yii::$app->getUrlManager()->addRules([
-$link . '/<link:(' . implode('|', $model::find()->select(['link'])->byAllCriteria()->byType(['news'])->column()) . ')>' => 'news/detail'
-]);
+$news = $model::find()->select(['link'])->byAllCriteria()->byType(['news'])->column();
+
+if ($news) {
+    Yii::$app->getUrlManager()->addRules([
+        $link . '/<link:(' . implode('|', $news) . ')>' => 'news/detail'
+    ]);
+}
 ```
 
 2. Get list of news on overview page
 ```php
+<?php
+
+use mrstroz\wavecms\news\models\News;
+use Yii;
+use yii\data\Pagination;
+
 public function actionIndex() {
     /** @var Settings $settings */
     $settings = Yii::$app->settings;
@@ -211,6 +222,10 @@ public function actionIndex() {
 
 3. Display news in view 'index.php'
 ```php
+<?php
+use yii\helpers\Html;
+use yii\widgets\LinkPager;
+
 /** @var \mrstroz\wavecms\news\models\News[] $news */
 /** @var \yii\data\Pagination $pagination */
 
