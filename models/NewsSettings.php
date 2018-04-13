@@ -11,6 +11,12 @@ class NewsSettings extends SettingsModel
     public $overview_link;
     public $news_on_page;
 
+    public function init()
+    {
+        $this->setLanguageAttributes(['overview_title', 'overview_link']);
+        parent::init();
+    }
+
 
     public function behaviors()
     {

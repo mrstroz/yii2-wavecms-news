@@ -173,7 +173,7 @@ Yii::$app->urlManager->parseRequest(Yii::$app->request);
 
 /** @var Settings $settings */
 $settings = Yii::$app->settings;
-$link = $settings->get('NewsSettings', 'overview_link');
+$link = $settings->get('NewsSettings_' . Yii::$app->language, 'overview_link');
 
 $model = Yii::createObject(News::class);
 
@@ -231,7 +231,7 @@ use yii\widgets\LinkPager;
 
 /** @var \yii2mod\settings\components\Settings $settings */
 $settings = Yii::$app->settings;
-$link = $settings->get('NewsSettings', 'overview_link');
+$link = $settings->get('NewsSettings_' . Yii::$app->language, 'overview_link');
 
 if ($news) {
     foreach ($news as $oneNews) {
