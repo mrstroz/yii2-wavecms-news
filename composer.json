@@ -1,0 +1,38 @@
+{
+  "name": "mrstroz/yii2-wavecms-news",
+  "description": "News module for WaveCMS",
+  "type": "yii2-extension",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Mariusz Stróż",
+      "email": "mariusz.stroz@gmail.com",
+      "homepage": "http://inwave.eu",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.0",
+    "yiisoft/yii2": "~2.0.6",
+    "yiisoft/yii2-imagine": "~2.1.0",
+    "powerkernel/yii2-slugify": "*",
+    "kartik-v/yii2-widget-datepicker": "@dev",
+    "2amigos/yii2-switch-widget": "~1.0",
+    "himiklab/yii2-sitemap-module": "*",
+    "mrstroz/yii2-wavecms": "*",
+    "mrstroz/yii2-wavecms-metatags": "*"
+  },
+  "require-dev": {
+    "php": ">=5.4.0",
+    "yiisoft/yii2": "~2.0.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "mrstroz\\wavecms\\news\\": ""
+    }
+  },
+  "extra": {
+    "bootstrap": "mrstroz\\wavecms\\news\\Bootstrap"
+  }
+}
