@@ -25,6 +25,13 @@ class Bootstrap implements BootstrapInterface
     {
         Yii::setAlias('@wavecms_news', '@vendor/mrstroz/yii2-wavecms-news');
 
+        /** Set backend language based on user lang (Must be done before define translations */
+        if ($app->id === 'app-backend') {
+            if (!Yii::$app->user->isGuest) {
+                Yii::$app->language = Yii::$app->user->identity->lang;
+            }
+        }
+
         $this->initTranslations();
 
         /** @var Module $module */
