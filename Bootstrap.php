@@ -123,7 +123,7 @@ class Bootstrap implements BootstrapInterface
 
 
         Yii::$app->params['nav']['wavecms_news'] = [
-            'label' => FontAwesome::icon('newspaper-o') . Yii::t('wavecms_news/main', 'News'),
+            'label' => FontAwesome::icon('newspaper') . Yii::t('wavecms_news/main', 'News'),
             'url' => 'javascript: ;',
             'options' => [
                 'class' => 'drop-down'
@@ -131,7 +131,7 @@ class Bootstrap implements BootstrapInterface
             'permission' => 'wavecms_news',
             'position' => 3000,
             'items' => [
-                ['label' => FontAwesome::icon('newspaper-o') . Yii::t('wavecms_news/main', 'News list'),
+                ['label' => FontAwesome::icon('newspaper') . Yii::t('wavecms_news/main', 'News list'),
                     'url' => ['/wavecms-news/news/index']
                 ],
                 ['label' => FontAwesome::icon('cog') . Yii::t('wavecms_news/main', 'Settings'),
