@@ -30,6 +30,32 @@ use yii\bootstrap\Html;
 </div>
 <?php TabWidget::end(); ?>
 
+<?php TabWidget::begin(['heading' => Yii::t('wavecms_news/main', 'Settings')]); ?>
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <?php PanelWidget::begin(['heading' => Yii::t('wavecms_news/main', 'Gallery')]); ?>
+                <?php echo $form->field($model, 'is_gallery')->widget(SwitchBox::className(), [
+                    'options' => [
+                        'label' => false
+                    ],
+                    'clientOptions' => [
+                        'onColor' => 'success',
+                    ]
+                ]); ?>
+                <?php PanelWidget::end(); ?>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<?php TabWidget::end(); ?>
+
 <?php TabsWidget::end(); ?>
 <?php FormHelper::saveButton() ?>
 <?php WavecmsForm::end(); ?>

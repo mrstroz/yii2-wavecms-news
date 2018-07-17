@@ -4,8 +4,12 @@ namespace mrstroz\wavecms\news;
 
 use mrstroz\wavecms\components\helpers\FontAwesome;
 use mrstroz\wavecms\news\models\News;
+use mrstroz\wavecms\news\models\NewsItem;
+use mrstroz\wavecms\news\models\NewsItemLang;
 use mrstroz\wavecms\news\models\NewsLang;
 use mrstroz\wavecms\news\models\NewsSettings;
+use mrstroz\wavecms\news\models\query\NewsItemLangQuery;
+use mrstroz\wavecms\news\models\query\NewsItemQuery;
 use mrstroz\wavecms\news\models\query\NewsLangQuery;
 use mrstroz\wavecms\news\models\query\NewsQuery;
 use mrstroz\wavecms\news\models\search\NewsSearch;
@@ -73,11 +77,15 @@ class Bootstrap implements BootstrapInterface
             /* MODELS */
             'News' => News::class,
             'NewsLang' => NewsLang::class,
+            'NewsItem' => NewsItem::class,
+            'NewsItemLang' => NewsItemLang::class,
             'NewsSettings' => NewsSettings::class,
 
             /* QUERIES */
             'NewsQuery' => NewsQuery::class,
             'NewsLangQuery' => NewsLangQuery::class,
+            'NewsItemQuery' => NewsItemQuery::class,
+            'NewsItemLangQuery' => NewsItemLangQuery::class,
 
             /* SEARCH */
             'NewsSearch' => NewsSearch::class
@@ -87,11 +95,15 @@ class Bootstrap implements BootstrapInterface
             'mrstroz\\wavecms\\news\\models' => [
                 'News',
                 'NewsLang',
+                'NewsItem',
+                'NewsItemLang',
                 'NewsSettings',
             ],
             'mrstroz\\wavecms\\models\\news\\query' => [
                 'NewsQuery',
                 'NewsLangQuery',
+                'NewsItemQuery',
+                'NewsItemLangQuery',
             ],
             'mrstroz\\wavecms\\models\\news\\search' => [
                 'NewsSearch'

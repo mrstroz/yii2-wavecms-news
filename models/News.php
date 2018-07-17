@@ -52,35 +52,41 @@ class News extends ActiveRecord
     {
         return [
             'checkbox_list' => [
-                'class' => CheckboxListBehavior::className(),
+                'class' => CheckboxListBehavior::class,
                 'fields' => ['languages']
             ],
             'translate' => [
-                'class' => TranslateBehavior::className(),
+                'class' => TranslateBehavior::class,
                 'translationAttributes' => [
                     'title', 'link', 'text', 'author'
                 ]
             ],
             'image' => [
-                'class' => ImageBehavior::className(),
+                'class' => ImageBehavior::class,
                 'attribute' => 'image',
             ],
             'meta_tags' => [
-                'class' => MetaTagsBehavior::className()
+                'class' => MetaTagsBehavior::class
             ],
             'timestamp' => [
-                'class' => TimestampBehavior::className()
+                'class' => TimestampBehavior::class
+            ],
+            'gallery' => [
+                'class' => SubListBehavior::class,
+                'listId' => 'gallery',
+                'route' => '/wavecms-news/gallery/sub-list',
+                'parentField' => 'news_id'
             ],
             'sitemap' => [
-                'class' => SitemapBehavior::className(),
+                'class' => SitemapBehavior::class,
                 'scope' => function ($model) {
                     /** @var NewsQuery $model */
                     $model->byAllCriteria()->byType(['news']);
                 },
                 'dataClosure' => function ($model) {
-                    $link = Yii::$app->settings->get('NewsSettings','overview_link');
+                    $link = Yii::$app->settings->get('NewsSettings', 'overview_link');
                     return [
-                        'loc' => Url::to(['/'.$link.'/' . $model->link], true),
+                        'loc' => Url::to(['/' . $link . '/' . $model->link], true),
                         'lastmod' => $model->updated_at,
                         'changefreq' => SitemapBehavior::CHANGEFREQ_DAILY,
                         'priority' => 0.7
@@ -96,7 +102,7 @@ class News extends ActiveRecord
     public function rules()
     {
         return [
-            [['languages', 'title', 'link','create_date'], 'required'],
+            [['languages', 'title', 'link', 'create_date'], 'required'],
             [['publish'], 'integer'],
             [['link'], 'validateUniqueLink'],
             [['type'], 'string', 'max' => 255],
@@ -166,7 +172,7 @@ class News extends ActiveRecord
         }
 
         if ($query->count() !== '0') {
-            $this->addError($attribute, Yii::t('app', Yii::t('wavecms_news/main', 'Link should be unique.')));
+            $this->addError($attribute, Yii::t('wavecms_news/main', 'Link should be unique.'));
         }
     }
 

@@ -4,11 +4,13 @@ use mrstroz\wavecms\components\helpers\FormHelper;
 use mrstroz\wavecms\components\helpers\WavecmsForm;
 use mrstroz\wavecms\components\widgets\CKEditorWidget;
 use mrstroz\wavecms\components\widgets\LanguagesWidget;
+use mrstroz\wavecms\components\widgets\SubListWidget;
 use mrstroz\wavecms\components\widgets\TabsWidget;
 use mrstroz\wavecms\components\widgets\TabWidget;
 use mrstroz\wavecms\metatags\components\widgets\MetaTagsWidget;
 use kartik\date\DatePicker;
 use mrstroz\wavecms\components\widgets\ImageWidget;
+use mrstroz\wavecms\news\models\NewsSettings;
 use powerkernel\slugify\Slugify;
 use yii\bootstrap\Html;
 
@@ -64,6 +66,24 @@ use yii\bootstrap\Html;
     </div>
 </div>
 <?php TabWidget::end(); ?>
+
+<?php
+$settingsModel = Yii::createObject(NewsSettings::class);
+if (Yii::$app->settings->get($settingsModel->formName(), 'is_gallery') === '1'): ?>
+
+    <?php TabWidget::begin(['heading' => Yii::t('wavecms_news/main', 'Gallery')]); ?>
+    <div class="row">
+        <div class="col-md-12">
+            <?php echo SubListWidget::widget([
+                'model' => $model,
+                'listId' => 'gallery'
+            ]) ?>
+        </div>
+    </div>
+    <?php TabWidget::end(); ?>
+
+<?php endif; ?>
+
 
 <?php TabWidget::begin(['heading' => Yii::t('wavecms_news/main', 'Meta tags')]); ?>
 <div class="row">
