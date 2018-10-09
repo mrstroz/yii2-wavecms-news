@@ -69,14 +69,14 @@ use yii\bootstrap\Html;
 
 <?php
 $settingsModel = Yii::createObject(NewsSettings::class);
-if (Yii::$app->settings->get($settingsModel->formName(), 'is_gallery') === '1'): ?>
+if (Yii::$app->settings->get($settingsModel->formName(), 'is_sections') === '1'): ?>
 
-    <?php TabWidget::begin(['heading' => Yii::t('wavecms_news/main', 'Gallery')]); ?>
+    <?php TabWidget::begin(['heading' => Yii::t('wavecms_news/main', 'Sections')]); ?>
     <div class="row">
         <div class="col-md-12">
             <?php echo SubListWidget::widget([
                 'model' => $model,
-                'listId' => 'gallery'
+                'listId' => 'section'
             ]) ?>
         </div>
     </div>

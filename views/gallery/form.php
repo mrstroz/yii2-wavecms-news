@@ -2,14 +2,10 @@
 
 use mrstroz\wavecms\components\helpers\FormHelper;
 use mrstroz\wavecms\components\helpers\WavecmsForm;
-use mrstroz\wavecms\components\widgets\CKEditorWidget;
 use mrstroz\wavecms\components\widgets\LanguagesWidget;
 use mrstroz\wavecms\components\widgets\TabsWidget;
 use mrstroz\wavecms\components\widgets\TabWidget;
-use mrstroz\wavecms\metatags\components\widgets\MetaTagsWidget;
-use kartik\date\DatePicker;
 use mrstroz\wavecms\components\widgets\ImageWidget;
-use powerkernel\slugify\Slugify;
 use yii\bootstrap\Html;
 
 /** @var \mrstroz\wavecms\News\models\News $model */

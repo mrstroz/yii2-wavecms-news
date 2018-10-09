@@ -47,6 +47,10 @@ class Bootstrap implements BootstrapInterface
                 $this->initContainer($module);
             }
         }
+
+        NewsItem::$templates['text'] = Yii::t('wavecms_news/main','Text');
+        NewsItem::$templates['text_image'] = Yii::t('wavecms_news/main','Text and image');
+        NewsItem::$templates['gallery'] = Yii::t('wavecms_news/main','Gallery');
     }
 
     /**

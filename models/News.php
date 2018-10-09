@@ -8,8 +8,8 @@ use mrstroz\wavecms\components\behaviors\ImageBehavior;
 use mrstroz\wavecms\components\behaviors\SubListBehavior;
 use mrstroz\wavecms\components\behaviors\TranslateBehavior;
 use mrstroz\wavecms\metatags\components\behaviors\MetaTagsBehavior;
+use mrstroz\wavecms\news\models\query\NewsItemQuery;
 use mrstroz\wavecms\news\models\query\NewsQuery;
-use mrstroz\wavecms\news\models\query\NewsLangQuery;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
@@ -32,6 +32,10 @@ use yii\helpers\Url;
  * @property string $text
  * @property integer $created_at
  * @property integer $updated_at
+ *
+ * @property NewsLang[] $translations
+ * @property NewsLang[] $items
+ * @property NewsLang[] $sections
  */
 class News extends ActiveRecord
 {
@@ -71,10 +75,10 @@ class News extends ActiveRecord
             'timestamp' => [
                 'class' => TimestampBehavior::class
             ],
-            'gallery' => [
+            'section' => [
                 'class' => SubListBehavior::class,
-                'listId' => 'gallery',
-                'route' => '/wavecms-news/gallery/sub-list',
+                'listId' => 'section',
+                'route' => '/wavecms-news/section/sub-list',
                 'parentField' => 'news_id'
             ],
             'sitemap' => [
@@ -152,9 +156,27 @@ class News extends ActiveRecord
      */
     public function getTranslations()
     {
-        return $this->hasMany(NewsLang::className(), ['news_id' => 'id']);
+        return $this->hasMany(NewsLang::class, ['news_id' => 'id']);
     }
 
+    /**
+     * NewsItem relation
+     * @return ActiveQuery|NewsItemQuery
+     */
+    public function getItems()
+    {
+        return $this->hasMany(NewsItem::class, ['news_id' => 'id']);
+    }
+
+    /**
+     * Sections relation to NewsItem
+     * @return ActiveQuery|NewsItemQuery
+     */
+    public function getSections()
+    {
+        return $this->getItems()->getItems()->andWhere(['type' => 'section']);
+
+    }
 
     /**
      * Validator for unique link per language

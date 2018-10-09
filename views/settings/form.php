@@ -38,8 +38,8 @@ use yii\bootstrap\Html;
         <div class="row">
 
             <div class="col-md-6">
-                <?php PanelWidget::begin(['heading' => Yii::t('wavecms_news/main', 'Gallery')]); ?>
-                <?php echo $form->field($model, 'is_gallery')->widget(SwitchBox::className(), [
+                <?php PanelWidget::begin(['heading' => Yii::t('wavecms_news/main', 'Sections')]); ?>
+                <?php echo $form->field($model, 'is_sections')->widget(SwitchBox::class, [
                     'options' => [
                         'label' => false
                     ],

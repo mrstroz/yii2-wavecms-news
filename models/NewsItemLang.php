@@ -12,6 +12,9 @@ use Yii;
  * @property string $news_item_id
  * @property string $language
  * @property string $title
+ * @property string $text
+ * @property string $link_title
+ * @property string $link_page_url
  */
 class NewsItemLang extends \yii\db\ActiveRecord
 {
@@ -31,7 +34,8 @@ class NewsItemLang extends \yii\db\ActiveRecord
         return [
             [['news_item_id'], 'integer'],
             [['language'], 'string', 'max' => 10],
-            [['title'], 'string', 'max' => 255],
+            [['text'], 'string'],
+            [['title', 'link_title', 'link_page_url'], 'string', 'max' => 255],
         ];
     }
 
@@ -45,6 +49,9 @@ class NewsItemLang extends \yii\db\ActiveRecord
             'news_item_id' => Yii::t('wavecms_news/main', 'News Item ID'),
             'language' => Yii::t('wavecms_news/main', 'Language'),
             'title' => Yii::t('wavecms_news/main', 'Title'),
+            'text' => Yii::t('wavecms_news/main', 'Text'),
+            'link_title' => Yii::t('wavecms_news/main', 'Link title'),
+            'link_page_url' => Yii::t('wavecms_news/main', 'Url'),
         ];
     }
 
