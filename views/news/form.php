@@ -58,6 +58,7 @@ use yii\bootstrap\Html;
                 ]); ?>
 
                 <?php echo $form->field($model, 'image')->widget(ImageWidget::className()); ?>
+                <?php echo $form->field($model, 'image_mobile')->widget(ImageWidget::className()); ?>
 
 
             </div>

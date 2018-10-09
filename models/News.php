@@ -24,6 +24,7 @@ use yii\helpers\Url;
  * @property string $type
  * @property string $create_date
  * @property string $image
+ * @property string $image_mobile
  * @property string $template
  * @property string $languages
  * @property string $title
@@ -69,6 +70,10 @@ class News extends ActiveRecord
                 'class' => ImageBehavior::class,
                 'attribute' => 'image',
             ],
+            'image_mobile' => [
+                'class' => ImageBehavior::class,
+                'attribute' => 'image_mobile',
+            ],
             'meta_tags' => [
                 'class' => MetaTagsBehavior::class
             ],
@@ -111,7 +116,7 @@ class News extends ActiveRecord
             [['link'], 'validateUniqueLink'],
             [['type'], 'string', 'max' => 255],
             [['create_date', 'text', 'author'], 'string'],
-            [['image'], 'image'],
+            [['image', 'image_mobile'], 'image'],
             [['meta_title', 'meta_description', 'meta_keywords'], 'string']
         ];
     }
@@ -127,6 +132,7 @@ class News extends ActiveRecord
             'type' => Yii::t('wavecms_news/main', 'Type'),
             'create_date' => Yii::t('wavecms_news/main', 'Create date'),
             'image' => Yii::t('wavecms_news/main', 'Image'),
+            'image_mobile' => Yii::t('wavecms_news/main', 'Image mobile'),
             'template' => Yii::t('wavecms_news/main', 'Template'),
             'title' => Yii::t('wavecms_news/main', 'Title'),
             'link' => Yii::t('wavecms_news/main', 'Link'),
