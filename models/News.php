@@ -8,6 +8,8 @@ use mrstroz\wavecms\components\behaviors\ImageBehavior;
 use mrstroz\wavecms\components\behaviors\SubListBehavior;
 use mrstroz\wavecms\components\behaviors\TranslateBehavior;
 use mrstroz\wavecms\metatags\components\behaviors\MetaTagsBehavior;
+use mrstroz\wavecms\metatags\models\MetaTags;
+use mrstroz\wavecms\metatags\models\query\MetaTagsQuery;
 use mrstroz\wavecms\news\models\query\NewsItemQuery;
 use mrstroz\wavecms\news\models\query\NewsQuery;
 use Yii;
@@ -37,13 +39,11 @@ use yii\helpers\Url;
  * @property NewsLang[] $translations
  * @property NewsLang[] $items
  * @property NewsLang[] $sections
+ *
+ * @property MetaTags $metaTags
  */
 class News extends ActiveRecord
 {
-
-    public $meta_title;
-    public $meta_description;
-    public $meta_keywords;
 
     /**
      * @inheritdoc
@@ -117,7 +117,6 @@ class News extends ActiveRecord
             [['type'], 'string', 'max' => 255],
             [['create_date', 'text', 'author'], 'string'],
             [['image', 'image_mobile'], 'image'],
-            [['meta_title', 'meta_description', 'meta_keywords'], 'string']
         ];
     }
 
@@ -141,9 +140,6 @@ class News extends ActiveRecord
             'languages' => Yii::t('wavecms_news/main', 'Languages'),
             'newsLangTitle' => Yii::t('wavecms_news/main', 'Title'),
             'newsLangLink' => Yii::t('wavecms_news/main', 'Link'),
-            'meta_title' => Yii::t('wavecms_news/main', 'Meta title'),
-            'meta_description' => Yii::t('wavecms_news/main', 'Meta description'),
-            'meta_keywords' => Yii::t('wavecms_news/main', 'Meta keywords'),
         ];
     }
 
@@ -182,6 +178,18 @@ class News extends ActiveRecord
     {
         return $this->getItems()->getItems()->andWhere(['type' => 'section']);
 
+    }
+
+    /**
+     * Meta tags relation
+     * @return MetaTagsQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getMetaTags()
+    {
+        /** @var MetaTagsQuery $query */
+        $query = $this->hasOne(MetaTags::class, ['model_id' => 'id']);
+        return $query->getMetaTags($this->formName());
     }
 
     /**

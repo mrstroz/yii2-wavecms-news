@@ -10,6 +10,8 @@ use mrstroz\wavecms\components\widgets\TabWidget;
 use mrstroz\wavecms\metatags\components\widgets\MetaTagsWidget;
 use kartik\date\DatePicker;
 use mrstroz\wavecms\components\widgets\ImageWidget;
+use mrstroz\wavecms\metatags\components\widgets\OgTagsWidget;
+use mrstroz\wavecms\metatags\models\MetaTags;
 use mrstroz\wavecms\news\models\NewsSettings;
 use powerkernel\slugify\Slugify;
 use yii\bootstrap\Html;
@@ -89,10 +91,12 @@ if (Yii::$app->settings->get($settingsModel->formName(), 'is_sections') === '1')
 <?php TabWidget::begin(['heading' => Yii::t('wavecms_news/main', 'Meta tags')]); ?>
 <div class="row">
     <div class="col-md-12">
-        <?php echo MetaTagsWidget::widget(['model' => $model, 'form' => $form]); ?>
+        <?php echo MetaTagsWidget::widget(['model' => $model->metaTags, 'form' => $form]); ?>
+        <?php echo OgTagsWidget::widget(['model' => $model->metaTags, 'form' => $form]); ?>
     </div>
 </div>
 <?php TabWidget::end(); ?>
+
 
 <?php TabsWidget::end(); ?>
 <?php FormHelper::saveButton() ?>
