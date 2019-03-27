@@ -144,7 +144,7 @@ class Bootstrap implements BootstrapInterface
             'options' => [
                 'class' => 'drop-down'
             ],
-            'permission' => 'wavecms_news',
+            'permission' => 'wavecms-news',
             'position' => 3000,
             'items' => [
                 ['label' => FontAwesome::icon('newspaper') . Yii::t('wavecms_news/main', 'News list'),
