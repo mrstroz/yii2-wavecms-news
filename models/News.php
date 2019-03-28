@@ -93,7 +93,7 @@ class News extends ActiveRecord
                     $model->byAllCriteria()->byType(['news']);
                 },
                 'dataClosure' => function ($model) {
-                    $link = Yii::$app->settings->get('NewsSettings', 'overview_link');
+                    $link = Yii::$app->settings->get('NewsSettings_'.Yii::$app->language, 'overview_link');
                     return [
                         'loc' => Url::to(['/' . $link . '/' . $model->link], true),
                         'lastmod' => $model->updated_at,
