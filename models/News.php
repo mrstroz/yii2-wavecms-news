@@ -90,7 +90,7 @@ class News extends ActiveRecord
                 'class' => SitemapBehavior::class,
                 'scope' => function ($model) {
                     /** @var NewsQuery $model */
-                    $model->byAllCriteria()->byType(['news']);
+                    $model->byAllCriteria()->joinWith('metaTags', false)->andWhere(['!=', 'noindex', 1])->byType(['news']);
                 },
                 'dataClosure' => function ($model) {
                     $link = Yii::$app->settings->get('NewsSettings_'.Yii::$app->language, 'overview_link');
