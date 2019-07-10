@@ -80,6 +80,7 @@ use yii\bootstrap\Html;
     'idAttribute' => 'link_page_id',
     'urlAttribute' => 'link_page_url',
     'blankAttribute' => 'link_page_blank',
+    'relAttribute' => 'link_rel'
 ]); ?>
 
 <?php TabWidget::end(); ?>

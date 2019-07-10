@@ -24,6 +24,7 @@ use yii\db\ActiveQuery;
  * @property string $languages
  * @property string $image
  * @property string $image_mobile
+ * @property string $link_rel
  * @property string $link_page_id
  * @property string $link_page_blank
  *
@@ -99,7 +100,7 @@ class NewsItem extends \yii\db\ActiveRecord
             [['type', 'template'], 'string', 'max' => 255],
             [['image', 'image_mobile'], 'image'],
             [['languages', 'title'], 'required'],
-            [['title', 'link_title', 'link_page_url'], 'string', 'max' => 255],
+            [['title', 'link_title', 'link_rel', 'link_page_url'], 'string', 'max' => 255],
             [['text'], 'string'],
         ];
     }
@@ -122,6 +123,7 @@ class NewsItem extends \yii\db\ActiveRecord
             'title' => Yii::t('wavecms_news/main', 'Title'),
             'text' => Yii::t('wavecms_news/main', 'Text'),
             'link_title' => Yii::t('wavecms_news/main', 'Link title'),
+            'link_rel' => Yii::t('wavecms_news/main', 'Rel'),
             'link_page_id' => Yii::t('wavecms_news/main', 'Page'),
             'link_page_url' => Yii::t('wavecms_news/main', 'Url'),
             'link_page_blank' => Yii::t('wavecms_news/main', 'New tab')
