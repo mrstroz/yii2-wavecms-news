@@ -15,7 +15,6 @@
   "require": {
     "php": ">=5.6.0",
     "yiisoft/yii2": "~2.0.6",
-    "yiisoft/yii2-imagine": "~2.1.0",
     "powerkernel/yii2-slugify": "*",
     "kartik-v/yii2-widget-datepicker": "@dev",
     "2amigos/yii2-switch-widget": "~1.0",
